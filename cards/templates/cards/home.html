@@ -1,0 +1,54 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en" style="overflow-y: auto;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{%static 'cards/css/stars.css'%}">
+  <link rel="stylesheet" type="text/css" href="{%static 'cards/css/bootstrap.css'%}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Home | QuizzBizz </title>
+</head>
+
+<body style="background:transparent;">
+  <div id='stars'></div>
+  <div id='stars2'></div>
+  <div id='stars3'></div>
+  <div
+    style="position:fixed;bottom:30px;right:30px;color:white;background-color:#1b4f72;width:50px;height:50px;border-radius: 25px;display:flex;justify-content:center;align-content:center;">
+    <a href="/home/create" style="margin-top:10px;font-size:20px;color:white;text-decoration: none;">+</a></div>
+  <img src="{%static 'cards/images/ufo.png'%}" id="ufo1" alt="ufo" style="position: fixed;">
+  <div class="container-fluid">
+    <div id="title" style="margin-top:6%;position: relative;">Chose Your Quiz</div>
+    {%if title%}
+    <div class="container" id="list">
+      {%for titles in title%}
+      <div class="container" id="questions" style="margin-top:50px">
+        <img src="{%static 'cards/images/box.svg'%}" id="box{{forloop.counter}}" alt="box"
+          style="width :70px; height:70px;z-index: 2;">
+        <div class="container text" id="title" style="font-size:35px;letter-spacing: 5px;position: relative;display:flex;
+          flex-wrap: wrap;margin-left:90px">
+          <a id="title{{forloop.counter}}"
+            style="font-size:35px;letter-spacing: 5px;position: relative;text-decoration:none;color: #FFF;text-align: center;font-family:'lato', sans-serif;font-weight: 300;cursor:pointer;">{{titles.title}}</a>
+        </div>
+        <span id="{{forloop.counter}}" style="display:none;">{{titles.id}}</span>
+      </div>
+      <!-- <script>
+          var x= {{titles.id}};
+          console.log(x);
+        </script> -->
+      {%endfor%}
+    </div>
+    {%else%}
+    <div id="title" style="font-size: 60px;">No Quiz Available :(</div>
+    <a id="title" href="/home/create" style="font-size:30px;top:70%;letter-spacing: 5px;text-decoration: none;">Create
+      your own Quiz??? </a>
+    {%endif%}
+  </div>
+</body>
+<script src="{%static 'cards/js/bootstrap.js'%}"></script>
+<script src="{%static 'cards/js/home.js'%}"></script>
+
+</html>
